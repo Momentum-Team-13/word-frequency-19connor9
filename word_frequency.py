@@ -31,11 +31,13 @@ def word_counter(text):
 def remove_stop_words(text):
     text_list = text.split()
     # print(text_list)
-    for word in text_list:
-        for stop_word in STOP_WORDS:
-            if word == stop_word:
-                #   print('Deleting', word)
-                text_list.remove(word)
+    # the_counter = 0
+    for word in text_list.copy():
+        if word in STOP_WORDS:  # print('Deleting', word)
+            text_list.remove(word)
+
+   # print(text_list)
+   # print(the_counter)
     return text_list
 
 
@@ -47,12 +49,6 @@ def remove_uppercase(text):
     return text.lower()
 
 
-def filter_file(text):
-    remove_punctuation(text)
-    remove_stop_words(text)
-    remove_uppercase(text)
-
-
 def print_word_freq(file):
     """Read in `file` and print out the frequency of words in that file."""
     print(f'Your file is: {file}')
@@ -60,7 +56,7 @@ def print_word_freq(file):
         read_file = open_file.read()
     halfway = remove_punctuation(remove_uppercase(read_file))
     closer = remove_stop_words(halfway)
-    format_printer(frequency_sorter(word_counter(closer)), 10)
+    format_printer(frequency_sorter(word_counter(closer)), 20)
 
 
 if __name__ == "__main__":
